@@ -1,12 +1,30 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React,{useState, useRef} from 'react'
 import { blue, orange } from '../constants/color'
 import { TextInput, Button } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import ReactNativePhoneInput from 'react-native-phone-input'
+import * as ImagePicker from 'expo-image-picker';
 
 const OtpVerification = ({navigation}) => {
+    const [image, setImage] = useState(null);
     const otpRef = useRef();
+
+    const pickImage = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+        });
+    
+        // console.log(result);
+        if (!result.canceled) {
+          setImage(result.assets[0].uri);
+        }
+    };
+
     return (
         <View style={{flex:1}}>
         <View style={styles.container}>
@@ -16,9 +34,13 @@ const OtpVerification = ({navigation}) => {
             <View style={{flex:3, padding:20, backgroundColor:'#fff', borderTopLeftRadius:30, borderTopRightRadius:30}}>
                 <View style={{height:3, width:80, backgroundColor: blue, alignSelf:"center", marginBottom:10}}></View>
                 <View style={{flex:1, padding:10, alignItems:"center"}}>
-                    <View style={{width:150, height:150, marginBottom:15, borderWidth:1, justifyContent:"center", alignItems:"center", borderRadius:75}}>
-                        <MaterialCommunityIcons name="camera-outline" size={80} />
-                    </View>
+                    <TouchableOpacity style={{width:150, height:150, marginBottom:15, borderWidth:1, justifyContent:"center", alignItems:"center", borderRadius:75}} onPress={pickImage}>
+                        {image ? (
+                            <Image source={{ uri: image }} style={styles.image} />
+                        ):(
+                            <MaterialCommunityIcons name="camera-outline" size={80} />
+                        )}
+                    </TouchableOpacity>
                     <Text style={{marginBottom:30}}>Ajouter une photo</Text>
                     <View style={{flexDirection:'row', width:"100%", borderWidth:1, borderRadius:5, padding:2}}>
                     <ReactNativePhoneInput 
@@ -47,5 +69,10 @@ export default OtpVerification
 const styles = StyleSheet.create({
     container: {
         flex:1
-    }
+    },
+    image: {
+        width: 150,
+        height: 150,
+        borderRadius: 75
+    },
 })
