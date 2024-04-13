@@ -7,6 +7,12 @@ import Auth from './screens/Auth';
 import Login from './screens/Login';
 import OtpVerification from './screens/OtpVerification';
 import FirstLogin from './screens/FirstLogin';
+import Home from './screens/locataire/Home';
+import Notifications from './screens/locataire/Notifications';
+import Compte from './screens/locataire/Compte';
+import { PaperProvider } from 'react-native-paper';
+import { orange } from './constants/color';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -27,16 +33,57 @@ function StackNavigation(){
 
 function TabNavigation(){
   return (
-    <NavigationContainer>
-      <Tab.Navigator initialRouteName="stack">
+      <Tab.Navigator
+        initialRouteName="Home" 
+        screenOptions={{ 
+          headerShown: false,
+          tabBarStyle: {
+            backgroundColor: '#fff',
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+          },
+          tabBarActiveTintColor: orange,
+        }}
+      >
         {/* On va ajouter les pages de la navigation tab */}
+        <Tab.Screen 
+          name='Home' 
+          component={Home} 
+          options={{
+            tabBarLabel: 'Accueil',
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="home-outline" color={color} size={26} />
+            ),
+          }}
+        />
+        <Tab.Screen 
+          name='Notifications' 
+          component={Notifications}
+          options={{
+            tabBarLabel: 'Notifications',
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="bell-outline" color={color} size={26} />
+            ),
+          }}  
+        />
+        <Tab.Screen 
+          name='Compte' 
+          component={Compte}
+          options={{
+            tabBarLabel: 'Compte',
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="account-outline" color={color} size={26} />
+            ),
+          }}  
+        />
       </Tab.Navigator>
-    </NavigationContainer>
   );
 }
 export default function App() {
   return (
-    <StackNavigation/>
+    <PaperProvider>
+      <StackNavigation/>
+    </PaperProvider>
   )
 }
 
