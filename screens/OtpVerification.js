@@ -32,7 +32,7 @@ const OtpVerification = ({navigation}) => {
                     <Text style={{fontSize:19, marginBottom:10, fontWeight:"bold"}}>Renvoyez</Text>
                     <Text style={{fontSize:19, marginBottom:10, fontWeight:"bold"}}>Modifier</Text>
                     <View style={{position:"absolute", bottom:20, width:"100%", marginLeft:10}}>
-                        <Button mode='contained' style={{backgroundColor:orange, borderRadius:10}} onPress={() => navigation.navigate('OtpVerification')}>Confirmer</Button>
+                        <Button mode='contained' style={{backgroundColor:orange, borderRadius:10}} onPress={() => navigation.navigate('Tab')}>Confirmer</Button>
                     </View>
                 </View>
             </View>
