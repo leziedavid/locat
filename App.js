@@ -4,6 +4,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Auth from './screens/Auth';
+import Login from './screens/Login';
+import OtpVerification from './screens/OtpVerification';
+import FirstLogin from './screens/FirstLogin';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -14,6 +17,9 @@ function StackNavigation(){
       <Stack.Navigator initialRouteName="Auth" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Auth" component={Auth} />
         <Stack.Screen name="Tab" component={TabNavigation} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="OtpVerification" component={OtpVerification} />
+        <Stack.Screen name="FirstLogin" component={FirstLogin} />
       </Stack.Navigator>
     </NavigationContainer>
   );

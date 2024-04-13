@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar'
 import { orange } from '../constants/color'
 import { Button } from 'react-native-paper'
 
-const Auth = () => {
+const Auth = ({navigation}) => {
   return (
     <View style={{flex:1}}>
       <ImageBackground style={styles.container} source={require('../assets/estate.jpg')}>
@@ -14,8 +14,8 @@ const Auth = () => {
           </View>
         </View>
         <View style={{flex:3, justifyContent:"center", padding:20}}>
-          <Button mode='contained' style={styles.buttonOrange} labelStyle={{fontSize:20}}>Je suis Propriétaire</Button>
-          <Button style={styles.buttonOverlay} labelStyle={{color:orange, fontSize:20}}>Je suis Locataire</Button>
+          <Button mode='contained' style={styles.buttonOrange} labelStyle={{fontSize:20}} onPress={() => navigation.navigate('Login')}>Je suis Propriétaire</Button>
+          <Button style={styles.buttonOverlay} labelStyle={{color:orange, fontSize:20}} onPress={() => navigation.navigate('Login')}>Je suis Locataire</Button>
         </View>
       </ImageBackground>
     </View>
