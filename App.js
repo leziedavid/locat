@@ -7,6 +7,7 @@ import Auth from './screens/Auth';
 import Login from './screens/Login';
 import OtpVerification from './screens/OtpVerification';
 import FirstLogin from './screens/FirstLogin';
+import Register from './screens/Register';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -20,6 +21,7 @@ function StackNavigation(){
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="OtpVerification" component={OtpVerification} />
         <Stack.Screen name="FirstLogin" component={FirstLogin} />
+        <Stack.Screen name="Register" component={Register} />
       </Stack.Navigator>
     </NavigationContainer>
   );

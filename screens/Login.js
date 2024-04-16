@@ -14,6 +14,12 @@ const Login = ({navigation}) => {
         }
     }
 
+    const registers = (time) => {
+        if(time === true){
+            navigation.navigate('Register')
+        }
+    }
+
     return (
         <View style={{flex:1}}>
         <View style={styles.container}>
@@ -26,7 +32,7 @@ const Login = ({navigation}) => {
                     <View style={{backgroundColor:'lightgray', margin:10, height:"auto", borderRadius:20, flexDirection:"row", marginBottom:"20%"}}>
                         <Button 
                             mode='contained' 
-                            style={{
+                            style={{ 
                                 flex:1,
                                 backgroundColor:orange, 
                                 borderWidth:2, 
@@ -43,15 +49,19 @@ const Login = ({navigation}) => {
                         >
                             J'AI UN COMPTE
                         </Button>
+
                         <View style={{flex:1, alignItems:"center", justifyContent:"center"}}>
-                            <Text style={{fontWeight:"bold"}}>Creer un compte</Text>
+                            <Text onPress={() => registers(time)} style={{fontWeight:"bold"}}>Creer un compte</Text>
                         </View>
+
                     </View>
                     <TextInput mode='outlined' placeholder='Entrez votre numéro locatif' style={{marginBottom:20}} />
                     <Text>Votre <Text style={{fontWeight: "bold"}}>numéro locatif</Text> est unique et fait partie à present de votre identité, alors conservez-le bien.</Text>
+                    
                     <View style={{position:"absolute", bottom:20, width:"100%"}}>
                         <Button mode='contained' style={{backgroundColor:orange, borderRadius:10}} onPress={() => redirect(time)}>Verifier</Button>
                     </View>
+                    
                 </View>
             </View>
         </View>

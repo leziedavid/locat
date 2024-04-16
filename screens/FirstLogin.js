@@ -7,6 +7,7 @@ import ReactNativePhoneInput from 'react-native-phone-input'
 import * as ImagePicker from 'expo-image-picker';
 
 const OtpVerification = ({navigation}) => {
+    
     const [image, setImage] = useState(null);
     const otpRef = useRef();
 
@@ -51,7 +52,7 @@ const OtpVerification = ({navigation}) => {
                         }}
                         style={{borderRightWidth:0.5, width:90}}
                     />
-                    <TextInput outlineColor='#fff' keyboardAppearance='light' keyboardType='number-pad' underlineColor='#fff' underlineStyle={{borderWidth:0}} activeOutlineColor='#fff' style={{flex:3, marginLeft:5, backgroundColor:"#fff",}} />
+                    <TextInput outlineColor='#fff' keyboardAppearance='light' keyboardType='number-pad' underlineColor='#fff' underlineStyle={{borderWidth:0}} activeOutlineColor='#fff' style={{flex:3,height: 47, marginLeft:5, backgroundColor:"#fff",}} />
 
                     </View>
                     <View style={{position:"absolute", bottom:20, width:"100%", marginLeft:10}}>
