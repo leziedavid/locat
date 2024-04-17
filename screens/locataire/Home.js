@@ -1,12 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React,{useState, useRef} from 'react'
+import React from 'react'
 import { blue, orange } from '../../constants/color'
 import { Button, Portal, Modal, Snackbar } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import * as Clipboard from 'expo-clipboard';
 
-const Home = ({navigation}) => {
-
+const Home = () => {
     const [visible, setVisible] = React.useState(true);
     const onShowModal = () => setVisible(true);
     const onHideModal = () => setVisible(false);
@@ -26,13 +25,6 @@ const Home = ({navigation}) => {
         const text = await Clipboard.getStringAsync();
         setCopiedText(text);
     };
-    
-
-    const MobileMoney = (time) => {
-        if(time === true){
-            navigation.navigate('MobileMoney')
-        }
-    }
 
     return (
         <View style={{flex:1}}>
@@ -92,7 +84,7 @@ const Home = ({navigation}) => {
                             </Button>
                         </View>
                     </View>
-                </View> 
+                </View>
                 <View style={{backgroundColor:'lightgray', margin:10, height:"auto", borderRadius:20, flexDirection:"row", marginBottom:"20%"}}>
                     <Button 
                         mode='contained' 
@@ -117,6 +109,25 @@ const Home = ({navigation}) => {
                         <Text style={{fontWeight:"bold"}}>TRANSACTIONS</Text>
                     </View>
                 </View>
+                <View style={{flex:1, padding:10}}>
+                    <TouchableOpacity style={{flexDirection:"row", backgroundColor:green.hover, padding:10}} onPress={()=> navigation.navigate('PaymentDetails')}>
+                        <View style={{flex:2.5, justifyContent:"flex-start", padding:5}}>
+                            <Text style={{ fontSize:15, marginBottom:10}}>Mon domicile</Text>
+                            <View style={{backgroundColor: green.normal, padding:5, borderRadius:15, width:"40%", marginBottom:10}}>
+                                <Text style={{color: green.hover, fontSize:9}}>OFFRE -10% appliqué</Text>
+                            </View>
+                            <Text style={{fontSize:12}}>Date limite de paiement: <Text style={{fontWeight:"bold", color: green.normal}}>04 Avril 2024</Text></Text>
+                        </View>
+                        <View style={{flex:1, justifyContent:"center", alignItems:"center", padding:5}}>
+                            <Text style={{fontWeight:"bold", fontSize:18, color: green.normal, marginBottom:5}}>MARS 2024</Text>
+                            <Text style={{fontSize:15, color: green.normal, marginBottom:5}}>Mois prochain</Text>
+                            <View style={{backgroundColor: green.normal, padding:5, borderRadius:5}}>
+                                <Text style={{color:"#fff"}}>Paiement</Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </View>
             <Snackbar
                 visible={visibleSnackbar}
                 onDismiss={onDismissSnackBar}
@@ -129,7 +140,6 @@ const Home = ({navigation}) => {
             >
                 Le code à été copié
             </Snackbar>
-            </View>
         </View>
     )
 }
