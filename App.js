@@ -13,6 +13,7 @@ import Compte from './screens/locataire/Compte';
 import { PaperProvider } from 'react-native-paper';
 import { orange } from './constants/color';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import PaymentDetails from './screens/locataire/PaymentDetails';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -26,6 +27,7 @@ function StackNavigation(){
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="OtpVerification" component={OtpVerification} />
         <Stack.Screen name="FirstLogin" component={FirstLogin} />
+        <Stack.Screen name="PaymentDetails" component={PaymentDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );
