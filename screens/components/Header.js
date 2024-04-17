@@ -7,10 +7,12 @@ import { Appbar } from "react-native-paper";
  * @param {string} title - The title to be displayed in the header.
  * @return {JSX.Element} The rendered header component.
  */
-export const Header = ({backAction, title}) => {
+export const Header = ({backAction, title, backgroundColor}) => {
     return(
         <>
-            <Appbar.Header>
+            <Appbar.Header
+                style={{backgroundColor: backgroundColor ? backgroundColor : 'white'}}
+            >
                 {backAction && <Appbar.BackAction onPress={() => {}} />}
                 <Appbar.Content title={title} />
             </Appbar.Header>
