@@ -9,10 +9,14 @@ import OtpVerification from './screens/OtpVerification';
 import FirstLogin from './screens/FirstLogin';
 import Home from './screens/locataire/Home';
 import Notifications from './screens/locataire/Notifications';
+
 import Compte from './screens/locataire/Compte';
 import { PaperProvider } from 'react-native-paper';
 import { orange } from './constants/color';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+// tdllezie
+import Register from './screens/Register';
+import MobileMoney from './screens/locataire/MobileMoney';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -26,6 +30,9 @@ function StackNavigation(){
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="OtpVerification" component={OtpVerification} />
         <Stack.Screen name="FirstLogin" component={FirstLogin} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="MobileMoney" component={MobileMoney} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

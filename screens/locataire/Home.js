@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React,{useState, useRef} from 'react'
 import { blue, orange } from '../../constants/color'
 import { Button, Portal, Modal, Snackbar } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import * as Clipboard from 'expo-clipboard';
 
-const Home = () => {
+const Home = ({navigation}) => {
+
     const [visible, setVisible] = React.useState(true);
     const onShowModal = () => setVisible(true);
     const onHideModal = () => setVisible(false);
@@ -14,6 +15,8 @@ const Home = () => {
     const [visibleSnackbar, setVisibleSnackbar] = React.useState(false);
     const onToggleSnackBar = () => setVisibleSnackbar(!visibleSnackbar);
     const onDismissSnackBar = () => setVisibleSnackbar(false);
+    
+    const [time, setTime] = useState(true);
 
     const copyToClipboard = async () => {
         await Clipboard.setStringAsync('MACI09484');
@@ -23,6 +26,13 @@ const Home = () => {
         const text = await Clipboard.getStringAsync();
         setCopiedText(text);
     };
+    
+
+    const MobileMoney = (time) => {
+        if(time === true){
+            navigation.navigate('MobileMoney')
+        }
+    }
 
     return (
         <View style={{flex:1}}>
@@ -77,12 +87,12 @@ const Home = () => {
                             <Text style={{fontWeight:"bold", fontSize:15, color:blue, marginBottom:5}}>2000 <Text style={{fontSize:13}}>CFA</Text></Text>
                         </View>
                         <View style={{flex:1, alignItems:"center", justifyContent:"center"}}>
-                            <Button mode='container' icon={"plus"} labelStyle={{color:"white", fontWeight:"bold"}} style={{backgroundColor:blue, borderRadius:10}}>
+                            <Button onPress={() => MobileMoney(time)} mode='container' icon={"plus"} labelStyle={{color:"white", fontWeight:"bold"}} style={{backgroundColor:blue, borderRadius:10}}>
                                 Recharger
                             </Button>
                         </View>
                     </View>
-                </View>
+                </View> 
                 <View style={{backgroundColor:'lightgray', margin:10, height:"auto", borderRadius:20, flexDirection:"row", marginBottom:"20%"}}>
                     <Button 
                         mode='contained' 
