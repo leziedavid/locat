@@ -14,6 +14,8 @@ const Home = () => {
     const [visibleSnackbar, setVisibleSnackbar] = React.useState(false);
     const onToggleSnackBar = () => setVisibleSnackbar(!visibleSnackbar);
     const onDismissSnackBar = () => setVisibleSnackbar(false);
+    
+    const [time, setTime] = useState(true);
 
     const copyToClipboard = async () => {
         await Clipboard.setStringAsync('MACI09484');
@@ -77,7 +79,7 @@ const Home = () => {
                             <Text style={{fontWeight:"bold", fontSize:15, color:blue, marginBottom:5}}>2000 <Text style={{fontSize:13}}>CFA</Text></Text>
                         </View>
                         <View style={{flex:1, alignItems:"center", justifyContent:"center"}}>
-                            <Button mode='container' icon={"plus"} labelStyle={{color:"white", fontWeight:"bold"}} style={{backgroundColor:blue, borderRadius:10}}>
+                            <Button onPress={() => MobileMoney(time)} mode='container' icon={"plus"} labelStyle={{color:"white", fontWeight:"bold"}} style={{backgroundColor:blue, borderRadius:10}}>
                                 Recharger
                             </Button>
                         </View>
@@ -107,6 +109,25 @@ const Home = () => {
                         <Text style={{fontWeight:"bold"}}>TRANSACTIONS</Text>
                     </View>
                 </View>
+                <View style={{flex:1, padding:10}}>
+                    <TouchableOpacity style={{flexDirection:"row", backgroundColor:green.hover, padding:10}} onPress={()=> navigation.navigate('PaymentDetails')}>
+                        <View style={{flex:2.5, justifyContent:"flex-start", padding:5}}>
+                            <Text style={{ fontSize:15, marginBottom:10}}>Mon domicile</Text>
+                            <View style={{backgroundColor: green.normal, padding:5, borderRadius:15, width:"40%", marginBottom:10}}>
+                                <Text style={{color: green.hover, fontSize:9}}>OFFRE -10% appliqué</Text>
+                            </View>
+                            <Text style={{fontSize:12}}>Date limite de paiement: <Text style={{fontWeight:"bold", color: green.normal}}>04 Avril 2024</Text></Text>
+                        </View>
+                        <View style={{flex:1, justifyContent:"center", alignItems:"center", padding:5}}>
+                            <Text style={{fontWeight:"bold", fontSize:18, color: green.normal, marginBottom:5}}>MARS 2024</Text>
+                            <Text style={{fontSize:15, color: green.normal, marginBottom:5}}>Mois prochain</Text>
+                            <View style={{backgroundColor: green.normal, padding:5, borderRadius:5}}>
+                                <Text style={{color:"#fff"}}>Paiement</Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </View>
             <Snackbar
                 visible={visibleSnackbar}
                 onDismiss={onDismissSnackBar}
@@ -119,7 +140,6 @@ const Home = () => {
             >
                 Le code à été copié
             </Snackbar>
-            </View>
         </View>
     )
 }

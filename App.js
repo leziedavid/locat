@@ -9,6 +9,7 @@ import OtpVerification from './screens/OtpVerification';
 import FirstLogin from './screens/FirstLogin';
 import Home from './screens/locataire/Home';
 import Notifications from './screens/locataire/Notifications';
+
 import Compte from './screens/locataire/Compte';
 import { PaperProvider } from 'react-native-paper';
 import { orange } from './constants/color';

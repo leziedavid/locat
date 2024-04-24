@@ -42,18 +42,13 @@ const OtpVerification = ({navigation}) => {
                         )}
                     </TouchableOpacity>
                     <Text style={{marginBottom:30}}>Ajouter une photo</Text>
-                    <View style={{flexDirection:'row', width:"100%", borderWidth:1, borderRadius:5, padding:2}}>
-                    <ReactNativePhoneInput 
-                        ref={otpRef}
-                        initialCountry={'ci'}
-                        textProps={{
-                            placeholder: 'Enter a phone number...'
-                        }}
-                        style={{borderRightWidth:0.5, width:90}}
-                    />
-                    <TextInput outlineColor='#fff' keyboardAppearance='light' keyboardType='number-pad' underlineColor='#fff' underlineStyle={{borderWidth:0}} activeOutlineColor='#fff' style={{flex:3, marginLeft:5, backgroundColor:"#fff",}} />
+                    
 
+                    <View style={{flexDirection:'row', width:"100%", borderWidth:1,marginBottom:20, borderRadius:5, padding:2}}>
+                        <ReactNativePhoneInput  ref={otpRef}  initialCountry={'ci'}   textProps={{ placeholder: 'Enter a phone number...' }} style={{borderRightWidth:0.5, width:90}} />
+                        <TextInput outlineColor='#fff' keyboardAppearance='light' keyboardType='number-pad' underlineColor='#fff' underlineStyle={{borderWidth:0}} activeOutlineColor='#fff' style={{flex:1, height: 47, marginLeft:5, backgroundColor:"#fff",}} />
                     </View>
+
                     <View style={{position:"absolute", bottom:20, width:"100%", marginLeft:10}}>
                         <Button mode='contained' style={{backgroundColor:orange, borderRadius:10}} onPress={() => navigation.navigate('OtpVerification')}>Confirmer</Button>
                     </View>
