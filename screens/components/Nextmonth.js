@@ -1,58 +1,58 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { blue, green, orange } from '../../constants/color'
+import { blue, orange,green,autre,red,noire } from '../../constants/color'
 import { Header } from '../components/Header'
 import { Button, Divider } from 'react-native-paper'
 
 const PaymentDetails = () => {
   return (
     <View style={{flex:1}}>
-        <Header title="Mon domicle" backAction={true} backgroundColor={green.normal} />
+        <Header  firsttilte={true} backActionColor="#fff" TopColor="#fff" titlecolors="white" title="Mon domicle" Toptitle="" backAction={true} backgroundColor={green.normal} />
         <View style={styles.container}>
             <View style={styles.headerView}>
               <View style={styles.card}>
                 <Text style={{color: green.normal, textAlign:"center", fontWeight:"bold", marginBottom:10}}>MOIS PROCHAIN</Text>
                 <View style={{marginBottom:25}}>
-                  <Text style={{marginBottom:5, fontSize:17}}>PERIODE</Text>
+                  <Text style={{marginBottom:5, fontSize:15}}>PERIODE</Text>
                   <View style={{flexDirection:"row", alignItems:"center"}}>
-                    <Text style={{padding:5, backgroundColor:green.hover, color: green.normal, marginRight:10}}>Mois prochain</Text>
-                    <Text style={{fontWeight:"bold"}}>Avril 2024</Text>
+                    <Text style={{padding:5, backgroundColor:green.hover, color: green.normal, marginRight:10,fontSize:10}}>Mois prochain</Text>
+                    <Text style={{fontWeight:"bold",fontSize:10}}>Avril 2024</Text>
                   </View>
                 </View>
                 <View style={{marginBottom:10}}>
-                  <Text style={{marginBottom:5, fontSize:17}}>Date limite de paiement</Text>
+                  <Text style={{marginBottom:5, fontSize:13}}>Date limite de paiement</Text>
                   <View style={{flexDirection:"row", alignItems:"center"}}>
-                    <Text style={{fontWeight:"bold"}}>04 Avril 2024</Text>
+                    <Text style={{fontWeight:"bold",fontSize:11}}>04 Avril 2024</Text>
                   </View>
                 </View>
                 <View style={{marginBottom:10}}>
-                  <Text style={{marginBottom:5, fontSize:17}}>Coût du loyer</Text>
+                  <Text style={{marginBottom:5, fontSize:13}}>Coût du loyer</Text>
                   <View style={{flexDirection:"row", alignItems:"center"}}>
-                    <Text style={{fontWeight:"bold"}}>120 000 CFA</Text>
+                    <Text style={{fontWeight:"bold",fontSize:11}}>120 000 CFA</Text>
                   </View>
                 </View>
                 <View style={{marginBottom:5, flexDirection:"row", justifyContent:"space-between", alignItems:'center'}}>
                   <View>
-                    <Text style={{marginBottom:5, fontSize:17}}>Offre spéciale appliqué</Text>
+                    <Text style={{marginBottom:5, fontSize:15}}>Offre spéciale appliqué</Text>
                     <View style={{flexDirection:"row", alignItems:"center"}}>
-                      <Text style={{fontWeight:"bold", color:green.normal}}>-10%</Text>
+                      <Text style={{fontWeight:"bold", color:green.normal,fontSize:10}}>-10%</Text>
                     </View>
                   </View>
                   <View>
-                    <Text style={{color: green.normal}}>= 12 000 FCFA</Text>
+                    <Text style={{color: green.normal,fontSize:10,fontWeight:"bold"}}>= 12 000 FCFA</Text>
                   </View>
                 </View>
                 <Divider bold style={{marginBottom:10}} />
                 <View style={{flexDirection:'row', alignItems:"center", justifyContent:"space-between"}}>
-                  <Text>Loyer à payer</Text>
-                  <Text style={{color: orange, fontWeight:"bold"}}>132 000 FCFA</Text>
+                  <Text style={{color: noire.hover, fontWeight:"bold",fontSize:12}}>Loyer à payer</Text>
+                  <Text style={{color: orange, fontWeight:"bold",fontSize:12}}>132 000 FCFA</Text>
                 </View>
               </View>
             </View>
             <View style={{position:'absolute', bottom:30, width:"100%", padding:15}}>
               <Button mode='contained' style={{backgroundColor: green.normal, borderWidth:1, borderColor: blue, marginBottom:10, width:"75%", alignSelf:"center"}}>Payer le loyer</Button>
-              <Text style={{textAlign:"center", fontSize:16}}>Vous avez la possibilité de payer des mois de loyer par avance en cliquant sur</Text>
-              <Text style={{fontWeight:"bold", color:blue, textAlign:"center", marginTop:5}}>PAIEMENT ANTICIPÉ</Text>
+              <Text style={{textAlign:"center", fontSize:14}}>Vous avez la possibilité de payer des mois de loyer par avance en cliquant sur</Text>
+              <Text style={{fontWeight:"bold", color:blue, textAlign:"center", marginTop:10}}>PAIEMENT ANTICIPÉ</Text>
             </View>
         </View>
     </View>

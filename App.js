@@ -7,8 +7,18 @@ import Auth from './screens/Auth';
 import Login from './screens/Login';
 import OtpVerification from './screens/OtpVerification';
 import FirstLogin from './screens/FirstLogin';
+import Register from './screens/Register';
 import Home from './screens/locataire/Home';
 import Notifications from './screens/locataire/Notifications';
+import PaymentDetails from './screens/locataire/PaymentDetails';
+import Rechargement from './screens/locataire/Rechargement';
+
+import Nextmonth from './screens/components/Nextmonth';
+import Currentmonth from './screens/components/Currentmonth';
+import Monthspass from './screens/components/Monthspass';
+import Historyofpaimenets from './screens/components/Historyofpaimenets';
+import Detailpayment from './screens/components/Detailpayment';
+import MobileMoney from './screens/locataire/MobileMoney';
 
 import Compte from './screens/locataire/Compte';
 import { PaperProvider } from 'react-native-paper';
@@ -27,6 +37,15 @@ function StackNavigation(){
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="OtpVerification" component={OtpVerification} />
         <Stack.Screen name="FirstLogin" component={FirstLogin} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="PaymentDetails" component={PaymentDetails} />
+        <Stack.Screen name="Nextmonth" component={Nextmonth} />
+        <Stack.Screen name="Currentmonth" component={Currentmonth} />
+        <Stack.Screen name="Monthspass" component={Monthspass} />
+        <Stack.Screen name="Historyofpaimenets" component={Historyofpaimenets} />
+        <Stack.Screen name="Detailpayment" component={Detailpayment} />
+        <Stack.Screen name="MobileMoney" component={MobileMoney} />
+        <Stack.Screen name="Rechargement" component={Rechargement} />
       </Stack.Navigator>
     </NavigationContainer>
   );
