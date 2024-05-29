@@ -55,15 +55,22 @@ const Login = ({navigation}) => {
                         </View>
 
                     </View>
-                    <TextInput mode='outlined' placeholder='Entrez votre numéro locatif' style={{marginBottom:20}} />
+                    <TextInput mode='outlined' placeholder="Entrez votre numéro locatif" style={{ backgroundColor: 'white', fontSize: 14, marginBottom:20,  }} theme={{ colors: { primary: 'orange',  },  }} />
+
                     <Text>Votre <Text style={{fontWeight: "bold"}}>numéro locatif</Text> est unique et fait partie à present de votre identité, alors conservez-le bien.</Text>
                     
-                    <View style={{position:"absolute", bottom:20, width:"100%"}}>
+                    <View style={{ position:'',flex: 1, justifyContent: 'center', alignItems: 'center',  width: "100%", bottom: 10,}} >
+                   
+                    </View>
+
+
+                    <View style={{bottom:20, width:"100%"}}>
                         <Button mode='contained' style={{backgroundColor:orange, borderRadius:10}} onPress={() => redirect(time)}>Verifier</Button>
                     </View>
                     
                 </View>
             </View>
+
         </View>
         </View>
     )

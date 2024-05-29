@@ -1,8 +1,8 @@
+import React, { useRef, useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
-import React,{useState, useRef} from 'react'
-import { blue, orange } from '../constants/color'
-import { TextInput, Button } from 'react-native-paper'
 import OtpInputs from 'react-native-otp-inputs-expo'
+import { Button } from 'react-native-paper'
+import { blue, orange } from '../constants/color'
 
 const OtpVerification = ({navigation}) => {
     const [otpCode, setOtpCode] = useState('');
@@ -24,7 +24,7 @@ const OtpVerification = ({navigation}) => {
                         handleChange={(code) => setOtpCode(code)}
                         numberOfInputs={4}
                         style={{width:"100%", flexDirection:"row", justifyContent:"space-evenly", marginTop:20, marginBottom:"10%"}}
-                        inputContainerStyles={{borderColor: orange, borderRadius: 10, borderWidth:3, width:"17%", height:70, justifyContent:"center", alignItems:"center"}}
+                        inputContainerStyles={{borderColor: orange, borderRadius: 10, borderWidth:2, width:"20%", height:45, justifyContent:"center", alignItems:"center"}}
                         keyboardType='number-pad'
                         inputStyles={{color: "#000", fontSize: 25}}
                         cursorColor="#000"

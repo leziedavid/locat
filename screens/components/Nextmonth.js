@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { blue, orange,green,autre,red,noire } from '../../constants/color'
-import { Header } from '../components/Header'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Button, Divider } from 'react-native-paper'
+import { blue, green, noire, orange } from '../../constants/color'
+import { Header } from '../components/Header'
 
-const PaymentDetails = () => {
+const PaymentDetails = ({navigation}) => {
   return (
     <View style={{flex:1}}>
         <Header  firsttilte={true} backActionColor="#fff" TopColor="#fff" titlecolors="white" title="Mon domicle" Toptitle="" backAction={true} backgroundColor={green.normal} />
@@ -49,10 +49,14 @@ const PaymentDetails = () => {
                 </View>
               </View>
             </View>
-            <View style={{position:'absolute', bottom:30, width:"100%", padding:15}}>
-              <Button mode='contained' style={{backgroundColor: green.normal, borderWidth:1, borderColor: blue, marginBottom:10, width:"75%", alignSelf:"center"}}>Payer le loyer</Button>
-              <Text style={{textAlign:"center", fontSize:14}}>Vous avez la possibilité de payer des mois de loyer par avance en cliquant sur</Text>
-              <Text style={{fontWeight:"bold", color:blue, textAlign:"center", marginTop:10}}>PAIEMENT ANTICIPÉ</Text>
+            <View style={{position:'absolute', bottom:30, width:"100%", padding:10}}>
+              <Button mode='contained' style={{backgroundColor: green.normal, borderWidth:1, borderColor: blue.normal, marginBottom:10, width:"75%", alignSelf:"center",borderRadius: 14}}>Payer le loyer</Button>
+              <Text style={{textAlign:"center", fontSize:12}}>Vous avez la possibilité de payer des mois de loyer par avance en cliquant sur</Text>
+              <TouchableOpacity  onPress={()=> navigation.navigate('PaiementDavance')}>
+                <Text style={{ fontWeight: "bold", color: blue.normal, textAlign: "center", marginTop: 10,fontSize: 12 }}>PAIEMENT ANTICIPÉ</Text>
+              </TouchableOpacity>
+              
+
             </View>
         </View>
     </View>
@@ -66,8 +70,8 @@ const styles = StyleSheet.create({
         flex:1
     },
     headerView:{
-      padding:10, 
-      height:100, 
+      padding:10,
+      height:100,
       backgroundColor: green.normal,
       borderBottomLeftRadius:50,
       borderBottomRightRadius:50
@@ -77,5 +81,6 @@ const styles = StyleSheet.create({
       borderRadius:15,
       backgroundColor:"#fff",
       height:380,
+      top: 0,
     }
 })

@@ -1,15 +1,15 @@
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, TextInput,FlatList } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import React from 'react'
-import { blue, green, noire, orange,tamiser } from '../../constants/color'
-import { Header } from '../components/Header'
-import { Button, Divider } from 'react-native-paper'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import React from 'react';
+import { Appbar } from 'react-native-paper';
+import { blue, green, noire } from '../../constants/color';
 
-const Rechargement = () => {
+    const Rechargement = ({navigation}) => {
 
+    const blue = '#00f'; // Définition de la couleur bleue
 
-  const comptes = [
+    const comptes = [
     {
         id: 1,
         logo: require('../../assets/orangeMoney.png'), // Exemple de chemin vers une image de carte de crédit
@@ -47,44 +47,56 @@ const Rechargement = () => {
         numero: '01536868119',
     },
     // Ajoutez d'autres transactions ici...
-];
+    ];
 
-const renderItem = ({ item }) => (
-    <TouchableOpacity style={{ padding:1, marginBottom: 5 }} onPress={()=> navigation.navigate('Detailpayment',item)}>
-    <View style={styles.transactionItem}>
-        <Image source={item.logo} style={styles.logo} />
-        <View style={styles.transactionDetails}>
-            <Text style={styles.transactionType}>{item.moyenPaiement}</Text>
-            <Text style={styles.moyenPaiement}>{item.numero}</Text>
+    const renderItem = ({ item }) => (
+        <TouchableOpacity style={{ padding:1, marginBottom: 6 }} onPress={()=> navigation.navigate('MethodSelect',item)}>
+        <View style={styles.transactionItem}>
+            <Image source={item.logo} style={styles.logo} />
+            <View style={styles.transactionDetails}>
+                <Text style={styles.transactionType}>{item.moyenPaiement}</Text>
+                <Text style={styles.moyenPaiement}>{item.numero}</Text>
+            </View>
+            <View style={styles.bottomDetails}>
+                <Text style={styles.date}>{item.frais}</Text>
+            </View>
         </View>
-        <View style={styles.bottomDetails}>
-            <Text style={styles.date}>{item.frais}</Text>
-        </View>
-    </View>
-  </TouchableOpacity>
-);
+    </TouchableOpacity>
+    );
 
 
-  return (
-
+return (
         <View style={{flex:1}}>
-          <Header title="Selectionner un compte" backAction={true} backgroundColor=""/>
-            <View style={{padding:10,marginBottom: 100}}>
-                  <FlatList
-                        data={comptes}
-                        renderItem={renderItem}
-                        keyExtractor={(item) => item.id.toString()}
-                                  
-                    />
-              </View>
 
-              <TouchableOpacity style={{ padding:10, marginBottom: 5 }} onPress={()=> navigation.navigate('Detailpayment',item)}>
-                 <MaterialCommunityIcons name="plus" size={25} color={orange} />
-                 <Text style={{marginBottom:5,fontSize:15,}}>A payer</Text>
-              </TouchableOpacity>
+            {/* <Header title="Selectionner un compte" backAction={true} backgroundColor=""/> */}
+                <Appbar.Header>
+                    <Appbar.Action icon="arrow-left"   onPress={() => { navigation.goBack() }} />
+                    <View style={{ flex: 1, marginLeft:60}}>
+                        <Text>Selectionner un compte </Text>
+                    </View>
+        
+                    {/* <TouchableOpacity onPress={() => console.log('Recharger')}>
+                    <View style={{ marginRight: 10 }}>
+                        <Ionicons name="add-circle-outline" size={24} color="black" />
+                    </View>
+                    </TouchableOpacity> */}
+                </Appbar.Header>
 
+            <View style={{padding:10,marginBottom: 25}}>
+                <FlatList data={comptes} renderItem={renderItem} keyExtractor={(item) => item.id.toString()} />
+            </View>
+
+                <View style={{padding:10,marginBottom: 10}}>
+                    <TouchableOpacity onPress={()=> navigation.navigate('MobileMoney')} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <View style={{ backgroundColor: blue, borderRadius: 20, padding: 8 }}>
+                            <MaterialCommunityIcons name="plus" size={25} color={"white"} />
+                        </View>
+                        <Text style={{ marginLeft: 5, }}>Enregistrer un compte</Text>
+                    </TouchableOpacity>
+                </View>
         </View>
   )
+
 }
 
 export default Rechargement

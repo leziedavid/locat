@@ -1,92 +1,110 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, TextInput } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity,View } from 'react-native';
+import { Appbar, Button, Card, } from 'react-native-paper';
+import { blue, noire, orange } from '../../constants/color';
 
-const MobileMoney = () => {
-  const [selectedPayment, setSelectedPayment] = useState(null);
-  const [mobileNumber, setMobileNumber] = useState('');
+const MobileMoney = ({navigation}) => {
 
-  // Fonction pour gérer la sélection d'un moyen de paiement
-  const handleSelectPayment = (paymentMethod) => {
-    setSelectedPayment(paymentMethod);
-    // Ajoutez ici votre logique pour traiter la sélection du moyen de paiement
-  };
+      const [selectedPayment, setSelectedPayment] = useState(null);
+      const [mobileNumber, setMobileNumber] = useState('');
 
-  // Fonction pour valider le numéro de téléphone
-  const handleMobileNumberChange = (inputText) => {
-    // Remplacer tout caractère non numérique par une chaîne vide
-    const formattedNumber = inputText.replace(/\D/g, '');
+      const handleSelectPayment = (paymentMethod) => {
+        setSelectedPayment(paymentMethod);
+      };
 
-    // Si la longueur du numéro est supérieure à 10, ne pas mettre à jour l'état
-    if (formattedNumber.length <= 10) {
-      setMobileNumber(formattedNumber);
-    }
-  };
+      const handleMobileNumberChange = (inputText) => {
+        const formattedNumber = inputText.replace(/\D/g, '');
+        if (formattedNumber.length <= 10) {
+          setMobileNumber(formattedNumber);
+        }
 
-  return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {/* Texte pour indiquer de sélectionner un moyen de paiement */}
-      <Text style={styles.selectionText}>Sélectionner un moyen de paiement</Text>
+      };
 
-      {/* Carte pour chaque moyen de paiement */}
-      <View style={styles.paymentRow}>
-        <TouchableOpacity
-          style={[styles.paymentCard, selectedPayment === 'Orange' && styles.selectedPayment]}
-          onPress={() => handleSelectPayment('Orange')}
-        >
-          <View style={styles.logoContainer}>
-            <Image source={require('../../assets/orangeMoney.png')} style={styles.logo} />
+      return (
+        <View style={{flex:1}}>
+              <Appbar.Header>
+                  <Appbar.Action icon="arrow-left"  onPress={() => { navigation.goBack() }} />
+                  <View style={{ flex: 1, marginLeft:60}}>
+                    <Text>Enregistrer un compte</Text>
+                  </View>
+      
+                {/* <TouchableOpacity onPress={() => console.log('Recharger')}>
+                  <View style={{ marginRight: 10 }}>
+                    <Ionicons name="add-circle-outline" size={24} color="black" />
+                  </View>
+                </TouchableOpacity> */}
+            </Appbar.Header>
+
+
+            <ScrollView contentContainerStyle={styles.container}>
+              <View style={{padding:1,marginBottom: 10,marginRight:100}}>
+                <Text style={{ marginRight:100 }}>Sélectionner l'operateur</Text>
+              </View>
+
+              <View style={styles.paymentRow}>
+                <TouchableOpacity
+                  style={[styles.paymentCard, selectedPayment === 'Orange' && styles.selectedPayment]}
+                  onPress={() => handleSelectPayment('Orange')}
+                >
+                  <View style={styles.logoContainer}>
+                    <Image source={require('../../assets/orangeMoney.png')} style={styles.logo} />
+                  </View>
+                  <Text style={styles.label}>Orange</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={[styles.paymentCard, selectedPayment === 'Wave' && styles.selectedPayment]}
+                  onPress={() => handleSelectPayment('Wave')}
+                >
+                  <View style={styles.logoContainer}>
+                    <Image source={require('../../assets/wave.webp')} style={styles.logo} />
+                  </View>
+                  <Text style={styles.label}>Wave</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={[styles.paymentCard, selectedPayment === 'MTN' && styles.selectedPayment]}
+                  onPress={() => handleSelectPayment('MTN')}
+                >
+                  <View style={styles.logoContainer}>
+                    <Image source={require('../../assets/mtn.png')} style={styles.logo} />
+                  </View>
+                  <Text style={styles.label}>MTN</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={[styles.paymentCard, selectedPayment === 'Moov' && styles.selectedPayment]}
+                  onPress={() => handleSelectPayment('Moov')}
+                >
+                  <View style={styles.logoContainer}>
+                    <Image source={require('../../assets/moov.png')} style={styles.logo} />
+                  </View>
+                  <Text style={styles.label}>Moov</Text>
+                </TouchableOpacity>
+              </View>
+
+
+              <TextInput style={styles.input} placeholder="Saisie votre numéro de mobile money" value={mobileNumber}
+                onChangeText={handleMobileNumberChange} keyboardType="numeric" maxLength={10} />
+            </ScrollView>
+
+
+            <View style={{ position: "absolute", bottom: 20, left: 30, right: 30, padding: 10 }}>
+            <Button mode='contained' style={{ backgroundColor: orange, borderRadius: 14 }} onPress={() => navigation.navigate('ValidateSelect',items) }>CONFIRMER</Button>
           </View>
-          <Text style={styles.label}>Orange</Text>
-        </TouchableOpacity>
 
-        <TouchableOpacity
-          style={[styles.paymentCard, selectedPayment === 'Wave' && styles.selectedPayment]}
-          onPress={() => handleSelectPayment('Wave')}
-        >
-          <View style={styles.logoContainer}>
-            <Image source={require('../../assets/wave.webp')} style={styles.logo} />
-          </View>
-          <Text style={styles.label}>Wave</Text>
-        </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity
-          style={[styles.paymentCard, selectedPayment === 'MTN' && styles.selectedPayment]}
-          onPress={() => handleSelectPayment('MTN')}
-        >
-          <View style={styles.logoContainer}>
-            <Image source={require('../../assets/mtn.png')} style={styles.logo} />
-          </View>
-          <Text style={styles.label}>MTN</Text>
-        </TouchableOpacity>
+        
+      );
 
-        <TouchableOpacity
-          style={[styles.paymentCard, selectedPayment === 'Moov' && styles.selectedPayment]}
-          onPress={() => handleSelectPayment('Moov')}
-        >
-          <View style={styles.logoContainer}>
-            <Image source={require('../../assets/moov.png')} style={styles.logo} />
-          </View>
-          <Text style={styles.label}>Moov</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Champ de saisie pour le numéro de mobile money */}
-      <TextInput
-        style={styles.input}
-        placeholder="Saisie votre numéro de mobile money"
-        value={mobileNumber}
-        onChangeText={handleMobileNumberChange}
-        keyboardType="numeric" // Définit le clavier pour n'afficher que des chiffres
-        maxLength={10} // Limite la longueur de la saisie à 10 caractères
-      />
-    </ScrollView>
-  );
 }
+export default MobileMoney;
 
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 20,
   },
@@ -107,7 +125,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5, // Ajout de marge horizontale entre les cartes
     backgroundColor: '#fff',
     borderRadius: 8, // Ajout de bord arrondi aux cartes
-    padding: 7,
+    padding: 8,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -123,8 +141,8 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   logoContainer: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
     borderRadius: 10, // Ajout de bord arrondi aux logos
     overflow: 'hidden', // Cache tout ce qui dépasse du conteneur arrondi
     marginBottom: 5,
@@ -136,7 +154,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   label: {
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: 'bold',
   },
   input: {
@@ -150,4 +168,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MobileMoney;
+

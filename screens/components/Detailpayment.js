@@ -16,17 +16,15 @@ console.log(item);
             <View style={styles.headerView}>
               <View style={styles.card}>
                       <View style={styles.circleContainer}>
-                            <View style={styles.circle}> 
-                            <Image source={item.logo}  style={styles.logo} resizeMode="cover" // Redimensionne l'image pour qu'elle remplisse le conteneur
-                                />                          
+                            <View style={styles.circle}>
+                            <Image source={item.logo}  style={styles.logo} resizeMode="cover"/>
                             </View>
                         </View>
 
 
-                 <Text style={{color: orange, textAlign:"center", fontWeight:"bold", marginBottom:10}}>{item.moyenPaiement}</Text>
+                <Text style={{color: orange, textAlign:"center", fontWeight:"bold", marginBottom:10}}>{item.moyenPaiement}</Text>
 
                 <View style={{marginBottom:5, flexDirection:"row", justifyContent:"space-between", alignItems:'center'}}>
-                 
                     <View>
                       <Text style={{marginBottom:5,color:noire.autre, fontSize:13}}>Statut</Text>
                     </View>
@@ -41,7 +39,6 @@ console.log(item);
 
 
                 <View style={{marginBottom:5, flexDirection:"row", justifyContent:"space-between", alignItems:'center'}}>
-                 
                     <View>
                       <Text style={{marginBottom:5,color:noire.autre, fontSize:13}}>Montant</Text>
                     </View>

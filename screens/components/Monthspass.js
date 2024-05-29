@@ -1,42 +1,43 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { blue, orange,green,autre,red,noire } from '../../constants/color'
-import { Header } from './Header'
-import { Button, Divider } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import React from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Button } from 'react-native-paper'
+import { blue, noire, red } from '../../constants/color'
+import { Header } from './Header'
+// import { Ionicons } from '@expo/vector-icons';
 
-const PaymentDetails = () => {
+const PaymentDetails = ({navigation}) => {
   return (
     <View style={{flex:1}}>
-        <Header firsttilte={false} backActionColor="#fff" TopColor={red.normal}  titlecolors={red.normal}  title="Mon domicle" Toptitle="MOIS PASSE"  backAction={true} backgroundColor={red.hover} />
+        <Header firsttilte={false} backActionColor="#fff" TopColor={red.normal}  titlecolors={red.normal}  title="Mon domicle" Toptitle="  MOIS   PASSE  "  backAction={true} backgroundColor={red.hover} />
         <View style={styles.container}>
+          
             <View style={styles.headerView}>
               <View style={styles.card}>
 
-              <View style={styles.circleContainer}>
-                            <View style={styles.circle}>
-                                  <MaterialCommunityIcons style={{fontWeight: 'bold'}} name="close" size={100} color={"white"} />
-                            </View>
-                        </View>
-
-                        <Text style={{color:'red', textAlign:"center", fontWeight:"bold", marginBottom:8}}>LOYE IMPAIYE</Text>
-
-                
-                        <View style={{marginBottom:8, flexDirection:"row", justifyContent:"space-between", alignItems:'center'}}>
-                          <View>
-                            <Text style={{marginBottom:5,color:noire.hover, fontSize:15}}>PERIODE</Text>
-                            <View style={{flexDirection:"row", alignItems:"center"}}>
-                            <Text style={{fontWeight:"bold",color:noire.normal,fontSize:11}}>Avril 2024</Text>
-                            </View>
+                  <View style={styles.circleContainer}>
+                      <View style={styles.circle}>
+                            <MaterialCommunityIcons style={[styles.icon, { fontWeight: 'bold' }]} name="close" size={100} color={"white"} />
                       </View>
+                  </View>
 
-                  <View>
-                  <View style={{padding:5, borderRadius:15, width:"100%", marginBottom:10}}>
-                        <Text style={{color: red.normal, fontSize:8,fontWeight:"bold",}}>PERIODE</Text>
-                        <Text style={{color: red.normal, fontSize:6,fontWeight:"bold",}}>05 JANVIER - 05 FEVRIER</Text>
+                  <Text style={{color:'red', textAlign:"center", fontWeight:"bold", marginBottom:8}}>LOYE IMPAIYE</Text>
+
+                  <View style={{ marginBottom: 8, flexDirection: "row", justifyContent: "space-between", alignItems: 'center' }}>
+                    <View>
+                      <Text style={{ marginBottom: 5, color: noire.hover, fontSize: 15 }}>PERIODE</Text>
+                      <View style={{ flexDirection: "row", alignItems: "center" }}>
+                        <Text style={{ fontWeight: "bold", color: noire.normal, fontSize: 11 }}>Avril 2024</Text>
+                      </View>
+                    </View>
+
+                    <View>
+                      <View style={{ padding: 5, borderRadius: 15, width: "100%", marginBottom: 10 }}>
+                        <Text style={{ color: red.normal, fontSize: 8, fontWeight: "bold", }}>PERIODE</Text>
+                        <Text style={{ color: red.normal, fontSize: 6, fontWeight: "bold", }}>05 JANVIER - 05 FEVRIER</Text>
+                      </View>
+                    </View>
                   </View>
-                  </View>
-                </View>
                 
                 <View style={{marginBottom:10, flexDirection:"row", justifyContent:"space-between", alignItems:'center'}}>
                   <View>
@@ -82,11 +83,19 @@ const PaymentDetails = () => {
             </View>
 
             <View style={{position:'absolute', bottom:0, width:"100%", padding:1}}>
+
               <Button mode='contained' style={{backgroundColor: red.hover, borderWidth:1, borderColor: red.hover, marginBottom:10, width:"90%", alignSelf:"center"}} labelStyle={{color:red.normal,
                 }}>Payer le loyer
                 </Button>
+
               <Text style={{textAlign:"center", fontSize:12, marginTop:1}}>Vous avez la possibilité de payer des mois de loyer {"\n"}  par avance en cliquant sur</Text>
-              <Text style={{fontWeight:"bold", color:blue, fontSize:10, textAlign:"center", marginTop:10}}>PAIEMENT ANTICIPÉ</Text>
+
+              {/* <Text style={{fontWeight:"bold", color:blue.normal, fontSize:10, textAlign:"center", marginTop:10,}}>PAIEMENT ANTICIPÉ</Text> */}
+
+              <TouchableOpacity  onPress={()=> navigation.navigate('PaiementDavance')}>
+                <Text style={{ fontWeight: "bold", color: blue.normal, textAlign: "center", marginTop: 10,fontSize: 12 }}>PAIEMENT ANTICIPÉ</Text>
+              </TouchableOpacity>
+
               <Text > </Text>
             </View>
 
@@ -103,7 +112,7 @@ const styles = StyleSheet.create({
     },
     headerView:{
       padding:10, 
-      height:100, 
+      height:150, 
       backgroundColor: red.hover,
       borderBottomLeftRadius:50,
       borderBottomRightRadius:50
@@ -113,7 +122,7 @@ const styles = StyleSheet.create({
       borderRadius:15,
       backgroundColor:"#fff",
       height:460,
-      top:  20,
+      top:  30,
     },
 
     circleContainer: {
@@ -136,6 +145,13 @@ const styles = StyleSheet.create({
         marginLeft: -50, // Décalage pour centrer le cercle
         zIndex: 2, // Assure que le cercle est au-dessus du contenu
     },
+
+    icon: {
+      top: -5,
+      right:'4%',
+      justifyContent: 'center',
+      alignItems: 'center',
+  },
 
 
 })

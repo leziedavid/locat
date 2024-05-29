@@ -1,12 +1,10 @@
-import { Image, StyleSheet, Text, View,TouchableOpacity,ScrollView } from 'react-native'
-import React,{useState,useRef} from 'react'
-import { blue, orange } from '../constants/color'
-import { TextInput, Button } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import ReactNativePhoneInput from 'react-native-phone-input'
-import * as ImagePicker from 'expo-image-picker';
-
-
+import * as ImagePicker from 'expo-image-picker'
+import React, { useRef, useState } from 'react'
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Button, TextInput } from 'react-native-paper'
+import PhoneInput from "react-native-phone-number-input"
+import { blue, orange } from '../constants/color'
 const Register = ({navigation}) => {
 
     const [time, setTime] = useState(true)
@@ -30,25 +28,32 @@ const Register = ({navigation}) => {
         }
     }
 
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [isValidNumber, setIsValidNumber] = useState(false);
+    const phoneInputRef = React.useRef(null);
+
+    const handleOnChangePhoneNumber = (number) => {
+        setPhoneNumber(number);
+        console.log("Numéro de téléphone saisi:", phoneNumber);
+    };
+
     const pickImage = async () => {
-        // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.All,
-          allowsEditing: true,
-          aspect: [4, 3],
-          quality: 1,
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
         });
     
         // console.log(result);
         if (!result.canceled) {
-          setImage(result.assets[0].uri);
+            setImage(result.assets[0].uri);
         }
     };
     
 
     return (
 
-       
             <View style={{flex:1}}>
 
                     <View style={styles.container}>
@@ -108,16 +113,78 @@ const Register = ({navigation}) => {
                                 />
                                 </View>
                                 
-                                <TextInput mode='outlined' placeholder='Nom' style={{marginBottom:10 , backgroundColor:"#fff"}} />
-                                <TextInput mode='outlined' placeholder='Prénom' style={{marginBottom:10 , backgroundColor:"#fff"}} />
+                                <TextInput
+                                    mode="outlined" label="Nom"  placeholder="Nom"  placeholderTextColor="gray"
+                                    style={{
+                                    backgroundColor: 'white',
+                                    paddingHorizontal: 15,
+                                    color: 'orange',
+                                    borderColor: 'orange',
+                                    borderWidth: 0,
+                                    borderRadius: 5,
+                                    outline: 'none',
+                                    marginBottom:10,
+                                    }}
+                                    theme={{ colors: { primary: 'orange', placeholder: 'Nom' } }}
+                                    right={<TextInput.Affix text="" />}
+                                />
+                                
+                                
+                                <TextInput
+                                    mode="outlined" label="Prénom"  placeholder="Prénom"  placeholderTextColor="gray"
+                                    style={{
+                                    backgroundColor: 'white',
+                                    paddingHorizontal: 15,
+                                    color: 'orange',
+                                    borderColor: 'orange',
+                                    borderWidth: 0,
+                                    borderRadius: 5,
+                                    outline: 'none',
+                                    marginBottom:10,
+                                    }}
+                                    theme={{ colors: { primary: 'orange', placeholder: 'Prénom' } }}
+                                    right={<TextInput.Affix text="" />}
+                                />
 
-                                <View style={{flexDirection:'row', width:"100%", borderWidth:1,marginBottom:20, borderRadius:5, padding:2}}>
-                                    <ReactNativePhoneInput  ref={otpRef}  initialCountry={'ci'}   textProps={{ placeholder: 'Enter a phone number...' }} style={{borderRightWidth:0.5, width:90}} />
-                                    <TextInput outlineColor='#fff' keyboardAppearance='light' keyboardType='number-pad' underlineColor='#fff' underlineStyle={{borderWidth:0}} activeOutlineColor='#fff' style={{flex:1, height: 47, marginLeft:5, backgroundColor:"#fff",}} />
+                                <View style={styles.phoneInputContainer}>
+                                    <PhoneInput ref={phoneInputRef}  defaultValue={phoneNumber}  defaultCode="CI"  onChangeText={handleOnChangePhoneNumber} 
+                                    onChangeFormattedText={(text) => { setIsValidNumber(phoneInputRef.current?.isValidNumber(text)); }}
+                                    containerStyle={styles.phoneInputContainerStyle}
+                                    textContainerStyle={styles.phoneInputTextContainer}
+                                    textInputStyle={styles.phoneInputTextInput}  withDarkTheme   autoFocus placeholder="Numéro de téléphone" />
                                 </View>
 
-                                <TextInput mode='outlined' placeholder='Profession' style={{marginBottom:10 , backgroundColor:"#fff"}} />
-                                <TextInput mode='outlined' placeholder='N* CNI' style={{marginBottom:10 , backgroundColor:"#fff"}} />
+
+                                <TextInput
+                                    mode="outlined" label="Profession"  placeholder="Profession"  placeholderTextColor="gray"
+                                    style={{
+                                    backgroundColor: 'white',
+                                    paddingHorizontal: 15,
+                                    color: 'orange',
+                                    borderColor: 'orange',
+                                    borderWidth: 0,
+                                    borderRadius: 5,
+                                    outline: 'none',
+                                    marginBottom:10,
+                                    }}
+                                    theme={{ colors: { primary: 'orange', placeholder: 'Profession' } }}
+                                    right={<TextInput.Affix text="" />}
+                                />
+                                
+                                <TextInput mode="outlined" label="N* CNI"  placeholder="N* CNI"  placeholderTextColor="gray"
+                                    style={{
+                                    backgroundColor: 'white',
+                                    paddingHorizontal: 15,
+                                    color: 'orange',
+                                    borderColor: 'orange',
+                                    borderWidth: 0,
+                                    borderRadius: 5,
+                                    outline: 'none',
+                                    marginBottom:10,
+                                    }}
+                                    theme={{ colors: { primary: 'orange', placeholder: 'N* CNI' } }}
+                                    right={<TextInput.Affix text="" />}
+                                />
 
                                 <View style={{position:"", bottom:0, width:"100%"}}>
                                     <Button mode='contained' style={{backgroundColor:orange, borderRadius:10}} onPress={() => redirect(time)}>Enregistrer</Button>
@@ -129,7 +196,7 @@ const Register = ({navigation}) => {
                     </View>
 
             </View>
-     
+
     )
 }
 
@@ -147,34 +214,34 @@ const styles = StyleSheet.create({
     imagescontainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 10,
     borderWidth: 1,
     borderColor: '#888',
     borderRadius: 5,
     paddingHorizontal: 10,
     backgroundColor:"#fff"
-  },
+    },
 
-  textInput: {
+    textInput: {
     flex: 1,
     height: 55,
     backgroundColor:"#fff"
-  },
+    },
 
-  input: {
+    input: {
     flex: 1,
     marginLeft: 10,
     marginBottom:20,
     
-  },
-  iconContainer: {
+    },
+    iconContainer: {
     position: 'absolute',
     left: 10,
     top: '50%',
     transform: [{ translateY: -12 }], // Aligner l'icône verticalement avec le centre de l'input
-  },
+    },
 
-  cameraIconContainer: {
+    cameraIconContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     width: 40, // Ajustez la taille selon vos besoins
@@ -194,12 +261,27 @@ image: {
     borderRadius: 75,
     alignItems: 'center',
     justifyContent: 'center',
-    
-
-   
 },
 
-
+phoneInputContainer: {
+    position: 'relative',
+    width: '100%',
+    
+    },
+phoneInputContainerStyle: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+    paddingHorizontal: 15,
+    width: '100%',
+    },
+phoneInputTextContainer: {
+    borderBottomWidth: 0, 
+    },
+phoneInputTextInput: {
+    fontSize: 12,
+    color: 'orange',
+    },
 
 
 })

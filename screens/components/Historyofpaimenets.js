@@ -1,9 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { blue, orange,green,autre,red,noire } from '../../constants/color'
+import { StyleSheet, Text, View } from 'react-native'
+import { Button } from 'react-native-paper'
+import { blue, green, noire } from '../../constants/color'
 import { Header } from '../components/Header'
-import { Button, Divider } from 'react-native-paper'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 const PaymentDetails = () => {
   return (
@@ -66,7 +65,7 @@ const PaymentDetails = () => {
               </View>
             </View>
             <View style={{position:'absolute', bottom:5, width:"100%", padding:15}}>
-              <Button mode='contained' style={{backgroundColor:"white", borderWidth:0, borderRadius:5, borderColor: blue, marginBottom:10,  width:"90%", alignSelf:"center"}} labelStyle={{color: blue,
+              <Button mode='contained' style={{backgroundColor:"white", borderWidth:0, borderRadius:5, borderColor: blue.normal, marginBottom:10,  width:"90%", alignSelf:"center"}} labelStyle={{color: blue.normal,
                 }} >Ma facture</Button>
               <Text style={{textAlign:"center", fontSize:11, color:noire.hover,}}>Votre facture est disponible a tous {"\n"} moment même hors ligne</Text>
             </View>

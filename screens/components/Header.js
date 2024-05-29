@@ -1,7 +1,6 @@
+import { useNavigation } from '@react-navigation/native';
+import { Text, View } from 'react-native';
 import { Appbar } from "react-native-paper";
-import { useNavigation } from '@react-navigation/native'; 
-import { StyleSheet, Text, View } from 'react-native'
-import { blue, orange,green,autre,red,noire } from '../../constants/color'
 /**
  * Renders a header component with a title and optional back action.
  *
@@ -20,21 +19,30 @@ export const Header = ({backAction,titlecolors,firsttilte,backActionColor,TopCol
             </Appbar.Header> */}
             
             
-            <Appbar.Header style={{ backgroundColor: backgroundColor ? backgroundColor : 'white', marginBottom: 20 }}>
+            <Appbar.Header style={{ backgroundColor: backgroundColor ? backgroundColor : 'white', marginBottom: 40, top:2 }}>
             {/* Vue en haut */}
             <View style={{ flexDirection: 'row', paddingHorizontal: 1 }}>
             
 
-                <View style={{ flexDirection: 'row', alignItems: 'center',marginLeft: 10,marginBottom: 10 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center',marginLeft: 10,marginBottom: 10,}}>
                     {backAction && <Appbar.BackAction   color={backActionColor} onPress={() => { navigation.goBack() }} />}
                     {firsttilte &&  <Text style={{ fontSize: 15,color:titlecolors, marginLeft: backAction ? 1: 0 }}>Paiment</Text>}
                 </View>
 
-                {/* Vue en bas */}
-                <View style={{ alignItems: 'center', marginBottom: 1,justifyContent: 'center'}}>
-                   {Toptitle && <Text style={{ fontWeight: 'bold', fontSize: 15,marginRight:10,color:TopColor }}>{ Toptitle}</Text>}
-                    <Text style={{ fontSize: 15,marginRight:10,color:titlecolors, }}>{title}</Text>
-                </View>
+            
+                {
+                    Toptitle && <View style={{ alignItems: 'center',justifyContent: 'center',top:30 , marginBottom: 1,marginLeft:65}}>
+                        <Text style={{marginLeft:-5,textAlign:"center", fontWeight: 'bold', fontSize: 15,marginRight:10,color:TopColor }}>{ Toptitle}</Text> 
+                        <Text style={{marginLeft:-20,textAlign:"center",fontSize: 15,color:titlecolors,justifyContent: 'center',}}>{title}</Text>
+                    </View>
+                }
+
+                {
+                    ! Toptitle && <View style={{ alignItems: 'center',justifyContent: 'center',top:40 }}>
+                        <Text style={{marginLeft:-1,textAlign:"center",fontSize: 15,color:titlecolors,}}>{title}</Text>
+                    </View>
+                }
+
             </View>
         </Appbar.Header>
 

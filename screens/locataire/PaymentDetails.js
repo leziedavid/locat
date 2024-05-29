@@ -10,7 +10,7 @@ const PaymentDetails = () => {
         <Header title="Mon domicle" backAction={true} backgroundColor={green.normal} />
         <View style={styles.container}>
             <View style={styles.headerView}>
-              <View style={styles.card}>
+              <View style={styles.card}> 
                 <Text style={{color: green.normal, textAlign:"center", fontWeight:"bold", marginBottom:10}}>MOIS PROCHAIN</Text>
                 <View style={{marginBottom:25}}>
                   <Text style={{marginBottom:5, fontSize:17}}>PERIODE</Text>
