@@ -14,6 +14,12 @@ const Login = ({navigation}) => {
         }
     }
 
+    const registers = (time) => {
+        if(time === true){
+            navigation.navigate('Register')
+        }
+    }
+
     return (
         <View style={{flex:1}}>
         <View style={styles.container}>
@@ -26,7 +32,7 @@ const Login = ({navigation}) => {
                     <View style={{backgroundColor:'lightgray', margin:10, height:"auto", borderRadius:20, flexDirection:"row", marginBottom:"20%"}}>
                         <Button 
                             mode='contained' 
-                            style={{
+                            style={{ 
                                 flex:1,
                                 backgroundColor:orange, 
                                 borderWidth:2, 
@@ -43,17 +49,28 @@ const Login = ({navigation}) => {
                         >
                             J'AI UN COMPTE
                         </Button>
+
                         <View style={{flex:1, alignItems:"center", justifyContent:"center"}}>
-                            <Text style={{fontWeight:"bold"}}>Creer un compte</Text>
+                            <Text onPress={() => registers(time)} style={{fontWeight:"bold"}}>Creer un compte</Text>
                         </View>
+
                     </View>
-                    <TextInput mode='outlined' placeholder='Entrez votre numéro locatif' style={{marginBottom:20}} />
+                    <TextInput mode='outlined' placeholder="Entrez votre numéro locatif" style={{ backgroundColor: 'white', fontSize: 14, marginBottom:20,  }} theme={{ colors: { primary: 'orange',  },  }} />
+
                     <Text>Votre <Text style={{fontWeight: "bold"}}>numéro locatif</Text> est unique et fait partie à present de votre identité, alors conservez-le bien.</Text>
-                    <View style={{position:"absolute", bottom:20, width:"100%"}}>
+                    
+                    <View style={{ position:'',flex: 1, justifyContent: 'center', alignItems: 'center',  width: "100%", bottom: 10,}} >
+                   
+                    </View>
+
+
+                    <View style={{bottom:20, width:"100%"}}>
                         <Button mode='contained' style={{backgroundColor:orange, borderRadius:10}} onPress={() => redirect(time)}>Verifier</Button>
                     </View>
+                    
                 </View>
             </View>
+
         </View>
         </View>
     )

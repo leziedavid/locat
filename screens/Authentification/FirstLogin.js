@@ -2,34 +2,26 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import * as ImagePicker from 'expo-image-picker'
 import React, { useRef, useState } from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { Button } from 'react-native-paper'
-import PhoneInput from "react-native-phone-number-input"
+import { Button, TextInput } from 'react-native-paper'
+import ReactNativePhoneInput from 'react-native-phone-input'
 import { blue, orange } from '../constants/color'
 
 const OtpVerification = ({navigation}) => {
     const [image, setImage] = useState(null);
     const otpRef = useRef();
 
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [isValidNumber, setIsValidNumber] = useState(false);
-    const phoneInputRef = React.useRef(null);
-
-    const handleOnChangePhoneNumber = (number) => {
-        setPhoneNumber(number);
-        console.log("Numéro de téléphone saisi:", phoneNumber);
-    };
-
     const pickImage = async () => {
         // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
         });
-
+    
+        // console.log(result);
         if (!result.canceled) {
-        setImage(result.assets[0].uri);
+            setImage(result.assets[0].uri);
         }
     };
 
@@ -49,19 +41,15 @@ const OtpVerification = ({navigation}) => {
                             <MaterialCommunityIcons name="camera-outline" size={80} />
                         )}
                     </TouchableOpacity>
-                    
                     <Text style={{marginBottom:30}}>Ajouter une photo</Text>
                     
-                            <View style={styles.phoneInputContainer}>
-                                <PhoneInput ref={phoneInputRef}  defaultValue={phoneNumber}  defaultCode="CI"  onChangeText={handleOnChangePhoneNumber}
-                                onChangeFormattedText={(text) => { setIsValidNumber(phoneInputRef.current?.isValidNumber(text)); }}
-                                containerStyle={styles.phoneInputContainerStyle}
-                                textContainerStyle={styles.phoneInputTextContainer}
-                                textInputStyle={styles.phoneInputTextInput}  withDarkTheme   autoFocus placeholder="Numéro de téléphone" />
-                                
-                            </View>
 
-                    <View style={{position:"absolute", bottom:-10, width:"100%", marginLeft:10}}>
+                    <View style={{flexDirection:'row', width:"100%", borderWidth:1,marginBottom:20, borderRadius:5, padding:2}}>
+                        <ReactNativePhoneInput  ref={otpRef}  initialCountry={'ci'}   textProps={{ placeholder: 'Enter a phone number...' }} style={{borderRightWidth:0.5, width:90}} />
+                        <TextInput outlineColor='#fff' keyboardAppearance='light' keyboardType='number-pad' underlineColor='#fff' underlineStyle={{borderWidth:0}} activeOutlineColor='#fff' style={{flex:1, height: 47, marginLeft:5, backgroundColor:"#fff",}} />
+                    </View>
+
+                    <View style={{position:"absolute", bottom:20, width:"100%", marginLeft:10}}>
                         <Button mode='contained' style={{backgroundColor:orange, borderRadius:10}} onPress={() => navigation.navigate('OtpVerification')}>Confirmer</Button>
                     </View>
                 </View>
@@ -74,36 +62,12 @@ const OtpVerification = ({navigation}) => {
 export default OtpVerification
 
 const styles = StyleSheet.create({
-        container: {
-            flex:1
-        },
-        image: {
-            width: 150,
-            height: 150,
-            borderRadius: 75
-        },
-
- 
-phoneInputContainer: {
-    position: 'relative',
-    width: '109%',
-    // padding:-50
-    
+    container: {
+        flex:1
     },
-phoneInputContainerStyle: {
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 5,
-    paddingHorizontal: 15,
-    width: '100%',
+    image: {
+        width: 150,
+        height: 150,
+        borderRadius: 75
     },
-phoneInputTextContainer: {
-    borderBottomWidth: 0,
-    },
-phoneInputTextInput: {
-    fontSize: 14,
-    color: 'orange',
-    },
-
-
 })

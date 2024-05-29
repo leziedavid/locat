@@ -14,7 +14,7 @@ const Auth = ({navigation}) => {
           </View>
         </View>
         <View style={{flex:3, justifyContent:"center", padding:20}}>
-          <Button mode='contained' style={styles.buttonOrange} labelStyle={{fontSize:20}} onPress={() => navigation.navigate('Login')}>Je suis Propriétaire</Button>
+          <Button mode='contained' style={styles.buttonOrange} labelStyle={{fontSize:20}} onPress={() => navigation.navigate('Admin_Register')}>Je suis Propriétaire</Button>
           <Button style={styles.buttonOverlay} labelStyle={{color:orange, fontSize:20}} onPress={() => navigation.navigate('Login')}>Je suis Locataire</Button>
         </View>
       </ImageBackground>
